@@ -1,0 +1,3430 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statements
+Rule 2     statements -> statements statement
+Rule 3     statements -> statement
+Rule 4     statement -> assignment
+Rule 5     statement -> function_definition
+Rule 6     statement -> if_statement
+Rule 7     statement -> return_statement
+Rule 8     statement -> print_statement
+Rule 9     statement -> expression SEMICOLON
+Rule 10    assignment -> ID ASSIGN expression SEMICOLON
+Rule 11    function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE
+Rule 12    function_args -> function_args COMMA ID
+Rule 13    function_args -> ID
+Rule 14    function_args -> empty
+Rule 15    function_call -> ID LPAREN function_call_args RPAREN
+Rule 16    function_call_args -> function_call_args COMMA expression
+Rule 17    function_call_args -> expression
+Rule 18    function_call_args -> empty
+Rule 19    if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE
+Rule 20    if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+Rule 21    return_statement -> RETURN expression SEMICOLON
+Rule 22    lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+Rule 23    print_statement -> PRINT LPAREN expression RPAREN SEMICOLON
+Rule 24    expression -> NUMBER
+Rule 25    expression -> ID
+Rule 26    expression -> TRUE
+Rule 27    expression -> FALSE
+Rule 28    expression -> LPAREN expression RPAREN
+Rule 29    expression -> expression PLUS expression
+Rule 30    expression -> expression MINUS expression
+Rule 31    expression -> expression MULT expression
+Rule 32    expression -> expression DIV expression
+Rule 33    expression -> expression MOD expression
+Rule 34    expression -> expression GT expression
+Rule 35    expression -> expression LT expression
+Rule 36    expression -> expression GE expression
+Rule 37    expression -> expression LE expression
+Rule 38    expression -> expression EQ expression
+Rule 39    expression -> expression NE expression
+Rule 40    expression -> expression AND expression
+Rule 41    expression -> expression OR expression
+Rule 42    expression -> NOT expression
+Rule 43    expression -> MINUS expression
+Rule 44    expression -> function_call
+Rule 45    expression -> lambda_expression
+Rule 46    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 40
+ASSIGN               : 10
+COLON                : 22
+COMMA                : 12 16
+DEF                  : 11
+DIV                  : 32
+ELSE                 : 20
+EQ                   : 38
+FALSE                : 27
+GE                   : 36
+GT                   : 34
+ID                   : 10 11 12 13 15 25
+IF                   : 19 20
+LAMBDA               : 22
+LBRACE               : 11 19 20 20 22
+LE                   : 37
+LPAREN               : 11 15 19 20 22 22 23 28
+LT                   : 35
+MINUS                : 30 43
+MOD                  : 33
+MULT                 : 31
+NE                   : 39
+NOT                  : 42
+NUMBER               : 24
+OR                   : 41
+PLUS                 : 29
+PRINT                : 23
+RBRACE               : 11 19 20 20 22
+RETURN               : 21
+RPAREN               : 11 15 19 20 22 22 23 28
+SEMICOLON            : 9 10 21 23
+TRUE                 : 26
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 4
+empty                : 14 18
+expression           : 9 10 16 17 19 20 21 23 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 41 42 43
+function_args        : 11 12 22
+function_call        : 44
+function_call_args   : 15 16 22
+function_definition  : 5
+if_statement         : 6
+lambda_expression    : 45
+print_statement      : 8
+program              : 0
+return_statement     : 7
+statement            : 2 3
+statements           : 1 2 11 19 20 20 22
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statements
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . return_statement
+    (8) statement -> . print_statement
+    (9) statement -> . expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) function_definition -> . DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE
+    (19) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (21) return_statement -> . RETURN expression SEMICOLON
+    (23) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    ID              shift and go to state 10
+    DEF             shift and go to state 11
+    IF              shift and go to state 13
+    RETURN          shift and go to state 14
+    PRINT           shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    program                        shift and go to state 1
+    statements                     shift and go to state 2
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    return_statement               shift and go to state 7
+    print_statement                shift and go to state 8
+    expression                     shift and go to state 9
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statements .
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . return_statement
+    (8) statement -> . print_statement
+    (9) statement -> . expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) function_definition -> . DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE
+    (19) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (21) return_statement -> . RETURN expression SEMICOLON
+    (23) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    $end            reduce using rule 1 (program -> statements .)
+    ID              shift and go to state 10
+    DEF             shift and go to state 11
+    IF              shift and go to state 13
+    RETURN          shift and go to state 14
+    PRINT           shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    statement                      shift and go to state 24
+    assignment                     shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    return_statement               shift and go to state 7
+    print_statement                shift and go to state 8
+    expression                     shift and go to state 9
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 3
+
+    (3) statements -> statement .
+
+    ID              reduce using rule 3 (statements -> statement .)
+    DEF             reduce using rule 3 (statements -> statement .)
+    IF              reduce using rule 3 (statements -> statement .)
+    RETURN          reduce using rule 3 (statements -> statement .)
+    PRINT           reduce using rule 3 (statements -> statement .)
+    NUMBER          reduce using rule 3 (statements -> statement .)
+    TRUE            reduce using rule 3 (statements -> statement .)
+    FALSE           reduce using rule 3 (statements -> statement .)
+    LPAREN          reduce using rule 3 (statements -> statement .)
+    NOT             reduce using rule 3 (statements -> statement .)
+    MINUS           reduce using rule 3 (statements -> statement .)
+    LAMBDA          reduce using rule 3 (statements -> statement .)
+    $end            reduce using rule 3 (statements -> statement .)
+    RBRACE          reduce using rule 3 (statements -> statement .)
+
+
+state 4
+
+    (4) statement -> assignment .
+
+    ID              reduce using rule 4 (statement -> assignment .)
+    DEF             reduce using rule 4 (statement -> assignment .)
+    IF              reduce using rule 4 (statement -> assignment .)
+    RETURN          reduce using rule 4 (statement -> assignment .)
+    PRINT           reduce using rule 4 (statement -> assignment .)
+    NUMBER          reduce using rule 4 (statement -> assignment .)
+    TRUE            reduce using rule 4 (statement -> assignment .)
+    FALSE           reduce using rule 4 (statement -> assignment .)
+    LPAREN          reduce using rule 4 (statement -> assignment .)
+    NOT             reduce using rule 4 (statement -> assignment .)
+    MINUS           reduce using rule 4 (statement -> assignment .)
+    LAMBDA          reduce using rule 4 (statement -> assignment .)
+    $end            reduce using rule 4 (statement -> assignment .)
+    RBRACE          reduce using rule 4 (statement -> assignment .)
+
+
+state 5
+
+    (5) statement -> function_definition .
+
+    ID              reduce using rule 5 (statement -> function_definition .)
+    DEF             reduce using rule 5 (statement -> function_definition .)
+    IF              reduce using rule 5 (statement -> function_definition .)
+    RETURN          reduce using rule 5 (statement -> function_definition .)
+    PRINT           reduce using rule 5 (statement -> function_definition .)
+    NUMBER          reduce using rule 5 (statement -> function_definition .)
+    TRUE            reduce using rule 5 (statement -> function_definition .)
+    FALSE           reduce using rule 5 (statement -> function_definition .)
+    LPAREN          reduce using rule 5 (statement -> function_definition .)
+    NOT             reduce using rule 5 (statement -> function_definition .)
+    MINUS           reduce using rule 5 (statement -> function_definition .)
+    LAMBDA          reduce using rule 5 (statement -> function_definition .)
+    $end            reduce using rule 5 (statement -> function_definition .)
+    RBRACE          reduce using rule 5 (statement -> function_definition .)
+
+
+state 6
+
+    (6) statement -> if_statement .
+
+    ID              reduce using rule 6 (statement -> if_statement .)
+    DEF             reduce using rule 6 (statement -> if_statement .)
+    IF              reduce using rule 6 (statement -> if_statement .)
+    RETURN          reduce using rule 6 (statement -> if_statement .)
+    PRINT           reduce using rule 6 (statement -> if_statement .)
+    NUMBER          reduce using rule 6 (statement -> if_statement .)
+    TRUE            reduce using rule 6 (statement -> if_statement .)
+    FALSE           reduce using rule 6 (statement -> if_statement .)
+    LPAREN          reduce using rule 6 (statement -> if_statement .)
+    NOT             reduce using rule 6 (statement -> if_statement .)
+    MINUS           reduce using rule 6 (statement -> if_statement .)
+    LAMBDA          reduce using rule 6 (statement -> if_statement .)
+    $end            reduce using rule 6 (statement -> if_statement .)
+    RBRACE          reduce using rule 6 (statement -> if_statement .)
+
+
+state 7
+
+    (7) statement -> return_statement .
+
+    ID              reduce using rule 7 (statement -> return_statement .)
+    DEF             reduce using rule 7 (statement -> return_statement .)
+    IF              reduce using rule 7 (statement -> return_statement .)
+    RETURN          reduce using rule 7 (statement -> return_statement .)
+    PRINT           reduce using rule 7 (statement -> return_statement .)
+    NUMBER          reduce using rule 7 (statement -> return_statement .)
+    TRUE            reduce using rule 7 (statement -> return_statement .)
+    FALSE           reduce using rule 7 (statement -> return_statement .)
+    LPAREN          reduce using rule 7 (statement -> return_statement .)
+    NOT             reduce using rule 7 (statement -> return_statement .)
+    MINUS           reduce using rule 7 (statement -> return_statement .)
+    LAMBDA          reduce using rule 7 (statement -> return_statement .)
+    $end            reduce using rule 7 (statement -> return_statement .)
+    RBRACE          reduce using rule 7 (statement -> return_statement .)
+
+
+state 8
+
+    (8) statement -> print_statement .
+
+    ID              reduce using rule 8 (statement -> print_statement .)
+    DEF             reduce using rule 8 (statement -> print_statement .)
+    IF              reduce using rule 8 (statement -> print_statement .)
+    RETURN          reduce using rule 8 (statement -> print_statement .)
+    PRINT           reduce using rule 8 (statement -> print_statement .)
+    NUMBER          reduce using rule 8 (statement -> print_statement .)
+    TRUE            reduce using rule 8 (statement -> print_statement .)
+    FALSE           reduce using rule 8 (statement -> print_statement .)
+    LPAREN          reduce using rule 8 (statement -> print_statement .)
+    NOT             reduce using rule 8 (statement -> print_statement .)
+    MINUS           reduce using rule 8 (statement -> print_statement .)
+    LAMBDA          reduce using rule 8 (statement -> print_statement .)
+    $end            reduce using rule 8 (statement -> print_statement .)
+    RBRACE          reduce using rule 8 (statement -> print_statement .)
+
+
+state 9
+
+    (9) statement -> expression . SEMICOLON
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       shift and go to state 25
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    AND             shift and go to state 37
+    OR              shift and go to state 38
+
+
+state 10
+
+    (10) assignment -> ID . ASSIGN expression SEMICOLON
+    (25) expression -> ID .
+    (15) function_call -> ID . LPAREN function_call_args RPAREN
+
+    ASSIGN          shift and go to state 39
+    SEMICOLON       reduce using rule 25 (expression -> ID .)
+    PLUS            reduce using rule 25 (expression -> ID .)
+    MINUS           reduce using rule 25 (expression -> ID .)
+    MULT            reduce using rule 25 (expression -> ID .)
+    DIV             reduce using rule 25 (expression -> ID .)
+    MOD             reduce using rule 25 (expression -> ID .)
+    GT              reduce using rule 25 (expression -> ID .)
+    LT              reduce using rule 25 (expression -> ID .)
+    GE              reduce using rule 25 (expression -> ID .)
+    LE              reduce using rule 25 (expression -> ID .)
+    EQ              reduce using rule 25 (expression -> ID .)
+    NE              reduce using rule 25 (expression -> ID .)
+    AND             reduce using rule 25 (expression -> ID .)
+    OR              reduce using rule 25 (expression -> ID .)
+    LPAREN          shift and go to state 40
+
+
+state 11
+
+    (11) function_definition -> DEF . ID LPAREN function_args RPAREN LBRACE statements RBRACE
+
+    ID              shift and go to state 41
+
+
+state 12
+
+    (28) expression -> LPAREN . expression RPAREN
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 42
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 13
+
+    (19) if_statement -> IF . LPAREN expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> IF . LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+
+    LPAREN          shift and go to state 44
+
+
+state 14
+
+    (21) return_statement -> RETURN . expression SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 45
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 15
+
+    (23) print_statement -> PRINT . LPAREN expression RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 46
+
+
+state 16
+
+    (24) expression -> NUMBER .
+
+    SEMICOLON       reduce using rule 24 (expression -> NUMBER .)
+    PLUS            reduce using rule 24 (expression -> NUMBER .)
+    MINUS           reduce using rule 24 (expression -> NUMBER .)
+    MULT            reduce using rule 24 (expression -> NUMBER .)
+    DIV             reduce using rule 24 (expression -> NUMBER .)
+    MOD             reduce using rule 24 (expression -> NUMBER .)
+    GT              reduce using rule 24 (expression -> NUMBER .)
+    LT              reduce using rule 24 (expression -> NUMBER .)
+    GE              reduce using rule 24 (expression -> NUMBER .)
+    LE              reduce using rule 24 (expression -> NUMBER .)
+    EQ              reduce using rule 24 (expression -> NUMBER .)
+    NE              reduce using rule 24 (expression -> NUMBER .)
+    AND             reduce using rule 24 (expression -> NUMBER .)
+    OR              reduce using rule 24 (expression -> NUMBER .)
+    RPAREN          reduce using rule 24 (expression -> NUMBER .)
+    COMMA           reduce using rule 24 (expression -> NUMBER .)
+
+
+state 17
+
+    (26) expression -> TRUE .
+
+    SEMICOLON       reduce using rule 26 (expression -> TRUE .)
+    PLUS            reduce using rule 26 (expression -> TRUE .)
+    MINUS           reduce using rule 26 (expression -> TRUE .)
+    MULT            reduce using rule 26 (expression -> TRUE .)
+    DIV             reduce using rule 26 (expression -> TRUE .)
+    MOD             reduce using rule 26 (expression -> TRUE .)
+    GT              reduce using rule 26 (expression -> TRUE .)
+    LT              reduce using rule 26 (expression -> TRUE .)
+    GE              reduce using rule 26 (expression -> TRUE .)
+    LE              reduce using rule 26 (expression -> TRUE .)
+    EQ              reduce using rule 26 (expression -> TRUE .)
+    NE              reduce using rule 26 (expression -> TRUE .)
+    AND             reduce using rule 26 (expression -> TRUE .)
+    OR              reduce using rule 26 (expression -> TRUE .)
+    RPAREN          reduce using rule 26 (expression -> TRUE .)
+    COMMA           reduce using rule 26 (expression -> TRUE .)
+
+
+state 18
+
+    (27) expression -> FALSE .
+
+    SEMICOLON       reduce using rule 27 (expression -> FALSE .)
+    PLUS            reduce using rule 27 (expression -> FALSE .)
+    MINUS           reduce using rule 27 (expression -> FALSE .)
+    MULT            reduce using rule 27 (expression -> FALSE .)
+    DIV             reduce using rule 27 (expression -> FALSE .)
+    MOD             reduce using rule 27 (expression -> FALSE .)
+    GT              reduce using rule 27 (expression -> FALSE .)
+    LT              reduce using rule 27 (expression -> FALSE .)
+    GE              reduce using rule 27 (expression -> FALSE .)
+    LE              reduce using rule 27 (expression -> FALSE .)
+    EQ              reduce using rule 27 (expression -> FALSE .)
+    NE              reduce using rule 27 (expression -> FALSE .)
+    AND             reduce using rule 27 (expression -> FALSE .)
+    OR              reduce using rule 27 (expression -> FALSE .)
+    RPAREN          reduce using rule 27 (expression -> FALSE .)
+    COMMA           reduce using rule 27 (expression -> FALSE .)
+
+
+state 19
+
+    (43) expression -> MINUS . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 47
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 20
+
+    (42) expression -> NOT . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 48
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 21
+
+    (44) expression -> function_call .
+
+    SEMICOLON       reduce using rule 44 (expression -> function_call .)
+    PLUS            reduce using rule 44 (expression -> function_call .)
+    MINUS           reduce using rule 44 (expression -> function_call .)
+    MULT            reduce using rule 44 (expression -> function_call .)
+    DIV             reduce using rule 44 (expression -> function_call .)
+    MOD             reduce using rule 44 (expression -> function_call .)
+    GT              reduce using rule 44 (expression -> function_call .)
+    LT              reduce using rule 44 (expression -> function_call .)
+    GE              reduce using rule 44 (expression -> function_call .)
+    LE              reduce using rule 44 (expression -> function_call .)
+    EQ              reduce using rule 44 (expression -> function_call .)
+    NE              reduce using rule 44 (expression -> function_call .)
+    AND             reduce using rule 44 (expression -> function_call .)
+    OR              reduce using rule 44 (expression -> function_call .)
+    RPAREN          reduce using rule 44 (expression -> function_call .)
+    COMMA           reduce using rule 44 (expression -> function_call .)
+
+
+state 22
+
+    (45) expression -> lambda_expression .
+
+    SEMICOLON       reduce using rule 45 (expression -> lambda_expression .)
+    PLUS            reduce using rule 45 (expression -> lambda_expression .)
+    MINUS           reduce using rule 45 (expression -> lambda_expression .)
+    MULT            reduce using rule 45 (expression -> lambda_expression .)
+    DIV             reduce using rule 45 (expression -> lambda_expression .)
+    MOD             reduce using rule 45 (expression -> lambda_expression .)
+    GT              reduce using rule 45 (expression -> lambda_expression .)
+    LT              reduce using rule 45 (expression -> lambda_expression .)
+    GE              reduce using rule 45 (expression -> lambda_expression .)
+    LE              reduce using rule 45 (expression -> lambda_expression .)
+    EQ              reduce using rule 45 (expression -> lambda_expression .)
+    NE              reduce using rule 45 (expression -> lambda_expression .)
+    AND             reduce using rule 45 (expression -> lambda_expression .)
+    OR              reduce using rule 45 (expression -> lambda_expression .)
+    RPAREN          reduce using rule 45 (expression -> lambda_expression .)
+    COMMA           reduce using rule 45 (expression -> lambda_expression .)
+
+
+state 23
+
+    (22) lambda_expression -> LAMBDA . LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    LPAREN          shift and go to state 49
+
+
+state 24
+
+    (2) statements -> statements statement .
+
+    ID              reduce using rule 2 (statements -> statements statement .)
+    DEF             reduce using rule 2 (statements -> statements statement .)
+    IF              reduce using rule 2 (statements -> statements statement .)
+    RETURN          reduce using rule 2 (statements -> statements statement .)
+    PRINT           reduce using rule 2 (statements -> statements statement .)
+    NUMBER          reduce using rule 2 (statements -> statements statement .)
+    TRUE            reduce using rule 2 (statements -> statements statement .)
+    FALSE           reduce using rule 2 (statements -> statements statement .)
+    LPAREN          reduce using rule 2 (statements -> statements statement .)
+    NOT             reduce using rule 2 (statements -> statements statement .)
+    MINUS           reduce using rule 2 (statements -> statements statement .)
+    LAMBDA          reduce using rule 2 (statements -> statements statement .)
+    $end            reduce using rule 2 (statements -> statements statement .)
+    RBRACE          reduce using rule 2 (statements -> statements statement .)
+
+
+state 25
+
+    (9) statement -> expression SEMICOLON .
+
+    ID              reduce using rule 9 (statement -> expression SEMICOLON .)
+    DEF             reduce using rule 9 (statement -> expression SEMICOLON .)
+    IF              reduce using rule 9 (statement -> expression SEMICOLON .)
+    RETURN          reduce using rule 9 (statement -> expression SEMICOLON .)
+    PRINT           reduce using rule 9 (statement -> expression SEMICOLON .)
+    NUMBER          reduce using rule 9 (statement -> expression SEMICOLON .)
+    TRUE            reduce using rule 9 (statement -> expression SEMICOLON .)
+    FALSE           reduce using rule 9 (statement -> expression SEMICOLON .)
+    LPAREN          reduce using rule 9 (statement -> expression SEMICOLON .)
+    NOT             reduce using rule 9 (statement -> expression SEMICOLON .)
+    MINUS           reduce using rule 9 (statement -> expression SEMICOLON .)
+    LAMBDA          reduce using rule 9 (statement -> expression SEMICOLON .)
+    $end            reduce using rule 9 (statement -> expression SEMICOLON .)
+    RBRACE          reduce using rule 9 (statement -> expression SEMICOLON .)
+
+
+state 26
+
+    (29) expression -> expression PLUS . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 50
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 27
+
+    (30) expression -> expression MINUS . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 51
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 28
+
+    (31) expression -> expression MULT . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 52
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 29
+
+    (32) expression -> expression DIV . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 53
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 30
+
+    (33) expression -> expression MOD . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 54
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 31
+
+    (34) expression -> expression GT . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 55
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 32
+
+    (35) expression -> expression LT . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 56
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 33
+
+    (36) expression -> expression GE . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 57
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 34
+
+    (37) expression -> expression LE . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 58
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 35
+
+    (38) expression -> expression EQ . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 59
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 36
+
+    (39) expression -> expression NE . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 60
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 37
+
+    (40) expression -> expression AND . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 61
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 38
+
+    (41) expression -> expression OR . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 62
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 39
+
+    (10) assignment -> ID ASSIGN . expression SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 63
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 40
+
+    (15) function_call -> ID LPAREN . function_call_args RPAREN
+    (16) function_call_args -> . function_call_args COMMA expression
+    (17) function_call_args -> . expression
+    (18) function_call_args -> . empty
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (46) empty -> .
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    RPAREN          reduce using rule 46 (empty -> .)
+    COMMA           reduce using rule 46 (empty -> .)
+    LAMBDA          shift and go to state 23
+
+    function_call_args             shift and go to state 64
+    expression                     shift and go to state 65
+    empty                          shift and go to state 66
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 41
+
+    (11) function_definition -> DEF ID . LPAREN function_args RPAREN LBRACE statements RBRACE
+
+    LPAREN          shift and go to state 67
+
+
+state 42
+
+    (28) expression -> LPAREN expression . RPAREN
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    RPAREN          shift and go to state 68
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    AND             shift and go to state 37
+    OR              shift and go to state 38
+
+
+state 43
+
+    (25) expression -> ID .
+    (15) function_call -> ID . LPAREN function_call_args RPAREN
+
+    RPAREN          reduce using rule 25 (expression -> ID .)
+    PLUS            reduce using rule 25 (expression -> ID .)
+    MINUS           reduce using rule 25 (expression -> ID .)
+    MULT            reduce using rule 25 (expression -> ID .)
+    DIV             reduce using rule 25 (expression -> ID .)
+    MOD             reduce using rule 25 (expression -> ID .)
+    GT              reduce using rule 25 (expression -> ID .)
+    LT              reduce using rule 25 (expression -> ID .)
+    GE              reduce using rule 25 (expression -> ID .)
+    LE              reduce using rule 25 (expression -> ID .)
+    EQ              reduce using rule 25 (expression -> ID .)
+    NE              reduce using rule 25 (expression -> ID .)
+    AND             reduce using rule 25 (expression -> ID .)
+    OR              reduce using rule 25 (expression -> ID .)
+    SEMICOLON       reduce using rule 25 (expression -> ID .)
+    COMMA           reduce using rule 25 (expression -> ID .)
+    LPAREN          shift and go to state 40
+
+
+state 44
+
+    (19) if_statement -> IF LPAREN . expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> IF LPAREN . expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 69
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 45
+
+    (21) return_statement -> RETURN expression . SEMICOLON
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       shift and go to state 70
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    AND             shift and go to state 37
+    OR              shift and go to state 38
+
+
+state 46
+
+    (23) print_statement -> PRINT LPAREN . expression RPAREN SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 71
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 47
+
+    (43) expression -> MINUS expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 43 (expression -> MINUS expression .)
+    PLUS            reduce using rule 43 (expression -> MINUS expression .)
+    MINUS           reduce using rule 43 (expression -> MINUS expression .)
+    MULT            reduce using rule 43 (expression -> MINUS expression .)
+    DIV             reduce using rule 43 (expression -> MINUS expression .)
+    MOD             reduce using rule 43 (expression -> MINUS expression .)
+    GT              reduce using rule 43 (expression -> MINUS expression .)
+    LT              reduce using rule 43 (expression -> MINUS expression .)
+    GE              reduce using rule 43 (expression -> MINUS expression .)
+    LE              reduce using rule 43 (expression -> MINUS expression .)
+    EQ              reduce using rule 43 (expression -> MINUS expression .)
+    NE              reduce using rule 43 (expression -> MINUS expression .)
+    AND             reduce using rule 43 (expression -> MINUS expression .)
+    OR              reduce using rule 43 (expression -> MINUS expression .)
+    RPAREN          reduce using rule 43 (expression -> MINUS expression .)
+    COMMA           reduce using rule 43 (expression -> MINUS expression .)
+
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! MULT            [ shift and go to state 28 ]
+  ! DIV             [ shift and go to state 29 ]
+  ! MOD             [ shift and go to state 30 ]
+  ! GT              [ shift and go to state 31 ]
+  ! LT              [ shift and go to state 32 ]
+  ! GE              [ shift and go to state 33 ]
+  ! LE              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 48
+
+    (42) expression -> NOT expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 42 (expression -> NOT expression .)
+    PLUS            reduce using rule 42 (expression -> NOT expression .)
+    MINUS           reduce using rule 42 (expression -> NOT expression .)
+    MULT            reduce using rule 42 (expression -> NOT expression .)
+    DIV             reduce using rule 42 (expression -> NOT expression .)
+    MOD             reduce using rule 42 (expression -> NOT expression .)
+    GT              reduce using rule 42 (expression -> NOT expression .)
+    LT              reduce using rule 42 (expression -> NOT expression .)
+    GE              reduce using rule 42 (expression -> NOT expression .)
+    LE              reduce using rule 42 (expression -> NOT expression .)
+    EQ              reduce using rule 42 (expression -> NOT expression .)
+    NE              reduce using rule 42 (expression -> NOT expression .)
+    AND             reduce using rule 42 (expression -> NOT expression .)
+    OR              reduce using rule 42 (expression -> NOT expression .)
+    RPAREN          reduce using rule 42 (expression -> NOT expression .)
+    COMMA           reduce using rule 42 (expression -> NOT expression .)
+
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! MULT            [ shift and go to state 28 ]
+  ! DIV             [ shift and go to state 29 ]
+  ! MOD             [ shift and go to state 30 ]
+  ! GT              [ shift and go to state 31 ]
+  ! LT              [ shift and go to state 32 ]
+  ! GE              [ shift and go to state 33 ]
+  ! LE              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 49
+
+    (22) lambda_expression -> LAMBDA LPAREN . function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+    (12) function_args -> . function_args COMMA ID
+    (13) function_args -> . ID
+    (14) function_args -> . empty
+    (46) empty -> .
+
+    ID              shift and go to state 73
+    RPAREN          reduce using rule 46 (empty -> .)
+    COMMA           reduce using rule 46 (empty -> .)
+
+    function_args                  shift and go to state 72
+    empty                          shift and go to state 74
+
+state 50
+
+    (29) expression -> expression PLUS expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 29 (expression -> expression PLUS expression .)
+    PLUS            reduce using rule 29 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 29 (expression -> expression PLUS expression .)
+    GT              reduce using rule 29 (expression -> expression PLUS expression .)
+    LT              reduce using rule 29 (expression -> expression PLUS expression .)
+    GE              reduce using rule 29 (expression -> expression PLUS expression .)
+    LE              reduce using rule 29 (expression -> expression PLUS expression .)
+    EQ              reduce using rule 29 (expression -> expression PLUS expression .)
+    NE              reduce using rule 29 (expression -> expression PLUS expression .)
+    AND             reduce using rule 29 (expression -> expression PLUS expression .)
+    OR              reduce using rule 29 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 29 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 29 (expression -> expression PLUS expression .)
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+
+  ! MULT            [ reduce using rule 29 (expression -> expression PLUS expression .) ]
+  ! DIV             [ reduce using rule 29 (expression -> expression PLUS expression .) ]
+  ! MOD             [ reduce using rule 29 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! GT              [ shift and go to state 31 ]
+  ! LT              [ shift and go to state 32 ]
+  ! GE              [ shift and go to state 33 ]
+  ! LE              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 51
+
+    (30) expression -> expression MINUS expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 30 (expression -> expression MINUS expression .)
+    PLUS            reduce using rule 30 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 30 (expression -> expression MINUS expression .)
+    GT              reduce using rule 30 (expression -> expression MINUS expression .)
+    LT              reduce using rule 30 (expression -> expression MINUS expression .)
+    GE              reduce using rule 30 (expression -> expression MINUS expression .)
+    LE              reduce using rule 30 (expression -> expression MINUS expression .)
+    EQ              reduce using rule 30 (expression -> expression MINUS expression .)
+    NE              reduce using rule 30 (expression -> expression MINUS expression .)
+    AND             reduce using rule 30 (expression -> expression MINUS expression .)
+    OR              reduce using rule 30 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 30 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 30 (expression -> expression MINUS expression .)
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+
+  ! MULT            [ reduce using rule 30 (expression -> expression MINUS expression .) ]
+  ! DIV             [ reduce using rule 30 (expression -> expression MINUS expression .) ]
+  ! MOD             [ reduce using rule 30 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! GT              [ shift and go to state 31 ]
+  ! LT              [ shift and go to state 32 ]
+  ! GE              [ shift and go to state 33 ]
+  ! LE              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 52
+
+    (31) expression -> expression MULT expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 31 (expression -> expression MULT expression .)
+    PLUS            reduce using rule 31 (expression -> expression MULT expression .)
+    MINUS           reduce using rule 31 (expression -> expression MULT expression .)
+    MULT            reduce using rule 31 (expression -> expression MULT expression .)
+    DIV             reduce using rule 31 (expression -> expression MULT expression .)
+    MOD             reduce using rule 31 (expression -> expression MULT expression .)
+    GT              reduce using rule 31 (expression -> expression MULT expression .)
+    LT              reduce using rule 31 (expression -> expression MULT expression .)
+    GE              reduce using rule 31 (expression -> expression MULT expression .)
+    LE              reduce using rule 31 (expression -> expression MULT expression .)
+    EQ              reduce using rule 31 (expression -> expression MULT expression .)
+    NE              reduce using rule 31 (expression -> expression MULT expression .)
+    AND             reduce using rule 31 (expression -> expression MULT expression .)
+    OR              reduce using rule 31 (expression -> expression MULT expression .)
+    RPAREN          reduce using rule 31 (expression -> expression MULT expression .)
+    COMMA           reduce using rule 31 (expression -> expression MULT expression .)
+
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! MULT            [ shift and go to state 28 ]
+  ! DIV             [ shift and go to state 29 ]
+  ! MOD             [ shift and go to state 30 ]
+  ! GT              [ shift and go to state 31 ]
+  ! LT              [ shift and go to state 32 ]
+  ! GE              [ shift and go to state 33 ]
+  ! LE              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 53
+
+    (32) expression -> expression DIV expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 32 (expression -> expression DIV expression .)
+    PLUS            reduce using rule 32 (expression -> expression DIV expression .)
+    MINUS           reduce using rule 32 (expression -> expression DIV expression .)
+    MULT            reduce using rule 32 (expression -> expression DIV expression .)
+    DIV             reduce using rule 32 (expression -> expression DIV expression .)
+    MOD             reduce using rule 32 (expression -> expression DIV expression .)
+    GT              reduce using rule 32 (expression -> expression DIV expression .)
+    LT              reduce using rule 32 (expression -> expression DIV expression .)
+    GE              reduce using rule 32 (expression -> expression DIV expression .)
+    LE              reduce using rule 32 (expression -> expression DIV expression .)
+    EQ              reduce using rule 32 (expression -> expression DIV expression .)
+    NE              reduce using rule 32 (expression -> expression DIV expression .)
+    AND             reduce using rule 32 (expression -> expression DIV expression .)
+    OR              reduce using rule 32 (expression -> expression DIV expression .)
+    RPAREN          reduce using rule 32 (expression -> expression DIV expression .)
+    COMMA           reduce using rule 32 (expression -> expression DIV expression .)
+
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! MULT            [ shift and go to state 28 ]
+  ! DIV             [ shift and go to state 29 ]
+  ! MOD             [ shift and go to state 30 ]
+  ! GT              [ shift and go to state 31 ]
+  ! LT              [ shift and go to state 32 ]
+  ! GE              [ shift and go to state 33 ]
+  ! LE              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 54
+
+    (33) expression -> expression MOD expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 33 (expression -> expression MOD expression .)
+    PLUS            reduce using rule 33 (expression -> expression MOD expression .)
+    MINUS           reduce using rule 33 (expression -> expression MOD expression .)
+    MULT            reduce using rule 33 (expression -> expression MOD expression .)
+    DIV             reduce using rule 33 (expression -> expression MOD expression .)
+    MOD             reduce using rule 33 (expression -> expression MOD expression .)
+    GT              reduce using rule 33 (expression -> expression MOD expression .)
+    LT              reduce using rule 33 (expression -> expression MOD expression .)
+    GE              reduce using rule 33 (expression -> expression MOD expression .)
+    LE              reduce using rule 33 (expression -> expression MOD expression .)
+    EQ              reduce using rule 33 (expression -> expression MOD expression .)
+    NE              reduce using rule 33 (expression -> expression MOD expression .)
+    AND             reduce using rule 33 (expression -> expression MOD expression .)
+    OR              reduce using rule 33 (expression -> expression MOD expression .)
+    RPAREN          reduce using rule 33 (expression -> expression MOD expression .)
+    COMMA           reduce using rule 33 (expression -> expression MOD expression .)
+
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! MULT            [ shift and go to state 28 ]
+  ! DIV             [ shift and go to state 29 ]
+  ! MOD             [ shift and go to state 30 ]
+  ! GT              [ shift and go to state 31 ]
+  ! LT              [ shift and go to state 32 ]
+  ! GE              [ shift and go to state 33 ]
+  ! LE              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 55
+
+    (34) expression -> expression GT expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 34 (expression -> expression GT expression .)
+    GT              reduce using rule 34 (expression -> expression GT expression .)
+    LT              reduce using rule 34 (expression -> expression GT expression .)
+    GE              reduce using rule 34 (expression -> expression GT expression .)
+    LE              reduce using rule 34 (expression -> expression GT expression .)
+    EQ              reduce using rule 34 (expression -> expression GT expression .)
+    NE              reduce using rule 34 (expression -> expression GT expression .)
+    AND             reduce using rule 34 (expression -> expression GT expression .)
+    OR              reduce using rule 34 (expression -> expression GT expression .)
+    RPAREN          reduce using rule 34 (expression -> expression GT expression .)
+    COMMA           reduce using rule 34 (expression -> expression GT expression .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+
+  ! PLUS            [ reduce using rule 34 (expression -> expression GT expression .) ]
+  ! MINUS           [ reduce using rule 34 (expression -> expression GT expression .) ]
+  ! MULT            [ reduce using rule 34 (expression -> expression GT expression .) ]
+  ! DIV             [ reduce using rule 34 (expression -> expression GT expression .) ]
+  ! MOD             [ reduce using rule 34 (expression -> expression GT expression .) ]
+  ! GT              [ shift and go to state 31 ]
+  ! LT              [ shift and go to state 32 ]
+  ! GE              [ shift and go to state 33 ]
+  ! LE              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 56
+
+    (35) expression -> expression LT expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 35 (expression -> expression LT expression .)
+    GT              reduce using rule 35 (expression -> expression LT expression .)
+    LT              reduce using rule 35 (expression -> expression LT expression .)
+    GE              reduce using rule 35 (expression -> expression LT expression .)
+    LE              reduce using rule 35 (expression -> expression LT expression .)
+    EQ              reduce using rule 35 (expression -> expression LT expression .)
+    NE              reduce using rule 35 (expression -> expression LT expression .)
+    AND             reduce using rule 35 (expression -> expression LT expression .)
+    OR              reduce using rule 35 (expression -> expression LT expression .)
+    RPAREN          reduce using rule 35 (expression -> expression LT expression .)
+    COMMA           reduce using rule 35 (expression -> expression LT expression .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+
+  ! PLUS            [ reduce using rule 35 (expression -> expression LT expression .) ]
+  ! MINUS           [ reduce using rule 35 (expression -> expression LT expression .) ]
+  ! MULT            [ reduce using rule 35 (expression -> expression LT expression .) ]
+  ! DIV             [ reduce using rule 35 (expression -> expression LT expression .) ]
+  ! MOD             [ reduce using rule 35 (expression -> expression LT expression .) ]
+  ! GT              [ shift and go to state 31 ]
+  ! LT              [ shift and go to state 32 ]
+  ! GE              [ shift and go to state 33 ]
+  ! LE              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 57
+
+    (36) expression -> expression GE expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 36 (expression -> expression GE expression .)
+    GT              reduce using rule 36 (expression -> expression GE expression .)
+    LT              reduce using rule 36 (expression -> expression GE expression .)
+    GE              reduce using rule 36 (expression -> expression GE expression .)
+    LE              reduce using rule 36 (expression -> expression GE expression .)
+    EQ              reduce using rule 36 (expression -> expression GE expression .)
+    NE              reduce using rule 36 (expression -> expression GE expression .)
+    AND             reduce using rule 36 (expression -> expression GE expression .)
+    OR              reduce using rule 36 (expression -> expression GE expression .)
+    RPAREN          reduce using rule 36 (expression -> expression GE expression .)
+    COMMA           reduce using rule 36 (expression -> expression GE expression .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+
+  ! PLUS            [ reduce using rule 36 (expression -> expression GE expression .) ]
+  ! MINUS           [ reduce using rule 36 (expression -> expression GE expression .) ]
+  ! MULT            [ reduce using rule 36 (expression -> expression GE expression .) ]
+  ! DIV             [ reduce using rule 36 (expression -> expression GE expression .) ]
+  ! MOD             [ reduce using rule 36 (expression -> expression GE expression .) ]
+  ! GT              [ shift and go to state 31 ]
+  ! LT              [ shift and go to state 32 ]
+  ! GE              [ shift and go to state 33 ]
+  ! LE              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 58
+
+    (37) expression -> expression LE expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 37 (expression -> expression LE expression .)
+    GT              reduce using rule 37 (expression -> expression LE expression .)
+    LT              reduce using rule 37 (expression -> expression LE expression .)
+    GE              reduce using rule 37 (expression -> expression LE expression .)
+    LE              reduce using rule 37 (expression -> expression LE expression .)
+    EQ              reduce using rule 37 (expression -> expression LE expression .)
+    NE              reduce using rule 37 (expression -> expression LE expression .)
+    AND             reduce using rule 37 (expression -> expression LE expression .)
+    OR              reduce using rule 37 (expression -> expression LE expression .)
+    RPAREN          reduce using rule 37 (expression -> expression LE expression .)
+    COMMA           reduce using rule 37 (expression -> expression LE expression .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+
+  ! PLUS            [ reduce using rule 37 (expression -> expression LE expression .) ]
+  ! MINUS           [ reduce using rule 37 (expression -> expression LE expression .) ]
+  ! MULT            [ reduce using rule 37 (expression -> expression LE expression .) ]
+  ! DIV             [ reduce using rule 37 (expression -> expression LE expression .) ]
+  ! MOD             [ reduce using rule 37 (expression -> expression LE expression .) ]
+  ! GT              [ shift and go to state 31 ]
+  ! LT              [ shift and go to state 32 ]
+  ! GE              [ shift and go to state 33 ]
+  ! LE              [ shift and go to state 34 ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 59
+
+    (38) expression -> expression EQ expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 38 (expression -> expression EQ expression .)
+    EQ              reduce using rule 38 (expression -> expression EQ expression .)
+    NE              reduce using rule 38 (expression -> expression EQ expression .)
+    AND             reduce using rule 38 (expression -> expression EQ expression .)
+    OR              reduce using rule 38 (expression -> expression EQ expression .)
+    RPAREN          reduce using rule 38 (expression -> expression EQ expression .)
+    COMMA           reduce using rule 38 (expression -> expression EQ expression .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+
+  ! PLUS            [ reduce using rule 38 (expression -> expression EQ expression .) ]
+  ! MINUS           [ reduce using rule 38 (expression -> expression EQ expression .) ]
+  ! MULT            [ reduce using rule 38 (expression -> expression EQ expression .) ]
+  ! DIV             [ reduce using rule 38 (expression -> expression EQ expression .) ]
+  ! MOD             [ reduce using rule 38 (expression -> expression EQ expression .) ]
+  ! GT              [ reduce using rule 38 (expression -> expression EQ expression .) ]
+  ! LT              [ reduce using rule 38 (expression -> expression EQ expression .) ]
+  ! GE              [ reduce using rule 38 (expression -> expression EQ expression .) ]
+  ! LE              [ reduce using rule 38 (expression -> expression EQ expression .) ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 60
+
+    (39) expression -> expression NE expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 39 (expression -> expression NE expression .)
+    EQ              reduce using rule 39 (expression -> expression NE expression .)
+    NE              reduce using rule 39 (expression -> expression NE expression .)
+    AND             reduce using rule 39 (expression -> expression NE expression .)
+    OR              reduce using rule 39 (expression -> expression NE expression .)
+    RPAREN          reduce using rule 39 (expression -> expression NE expression .)
+    COMMA           reduce using rule 39 (expression -> expression NE expression .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+
+  ! PLUS            [ reduce using rule 39 (expression -> expression NE expression .) ]
+  ! MINUS           [ reduce using rule 39 (expression -> expression NE expression .) ]
+  ! MULT            [ reduce using rule 39 (expression -> expression NE expression .) ]
+  ! DIV             [ reduce using rule 39 (expression -> expression NE expression .) ]
+  ! MOD             [ reduce using rule 39 (expression -> expression NE expression .) ]
+  ! GT              [ reduce using rule 39 (expression -> expression NE expression .) ]
+  ! LT              [ reduce using rule 39 (expression -> expression NE expression .) ]
+  ! GE              [ reduce using rule 39 (expression -> expression NE expression .) ]
+  ! LE              [ reduce using rule 39 (expression -> expression NE expression .) ]
+  ! EQ              [ shift and go to state 35 ]
+  ! NE              [ shift and go to state 36 ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 61
+
+    (40) expression -> expression AND expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 40 (expression -> expression AND expression .)
+    AND             reduce using rule 40 (expression -> expression AND expression .)
+    OR              reduce using rule 40 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 40 (expression -> expression AND expression .)
+    COMMA           reduce using rule 40 (expression -> expression AND expression .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+
+  ! PLUS            [ reduce using rule 40 (expression -> expression AND expression .) ]
+  ! MINUS           [ reduce using rule 40 (expression -> expression AND expression .) ]
+  ! MULT            [ reduce using rule 40 (expression -> expression AND expression .) ]
+  ! DIV             [ reduce using rule 40 (expression -> expression AND expression .) ]
+  ! MOD             [ reduce using rule 40 (expression -> expression AND expression .) ]
+  ! GT              [ reduce using rule 40 (expression -> expression AND expression .) ]
+  ! LT              [ reduce using rule 40 (expression -> expression AND expression .) ]
+  ! GE              [ reduce using rule 40 (expression -> expression AND expression .) ]
+  ! LE              [ reduce using rule 40 (expression -> expression AND expression .) ]
+  ! EQ              [ reduce using rule 40 (expression -> expression AND expression .) ]
+  ! NE              [ reduce using rule 40 (expression -> expression AND expression .) ]
+  ! AND             [ shift and go to state 37 ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 62
+
+    (41) expression -> expression OR expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       reduce using rule 41 (expression -> expression OR expression .)
+    OR              reduce using rule 41 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 41 (expression -> expression OR expression .)
+    COMMA           reduce using rule 41 (expression -> expression OR expression .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    AND             shift and go to state 37
+
+  ! PLUS            [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! MINUS           [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! MULT            [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! DIV             [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! MOD             [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! GT              [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! LT              [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! GE              [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! LE              [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! EQ              [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! NE              [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! AND             [ reduce using rule 41 (expression -> expression OR expression .) ]
+  ! OR              [ shift and go to state 38 ]
+
+
+state 63
+
+    (10) assignment -> ID ASSIGN expression . SEMICOLON
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    SEMICOLON       shift and go to state 75
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    AND             shift and go to state 37
+    OR              shift and go to state 38
+
+
+state 64
+
+    (15) function_call -> ID LPAREN function_call_args . RPAREN
+    (16) function_call_args -> function_call_args . COMMA expression
+
+    RPAREN          shift and go to state 76
+    COMMA           shift and go to state 77
+
+
+state 65
+
+    (17) function_call_args -> expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    RPAREN          reduce using rule 17 (function_call_args -> expression .)
+    COMMA           reduce using rule 17 (function_call_args -> expression .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    AND             shift and go to state 37
+    OR              shift and go to state 38
+
+
+state 66
+
+    (18) function_call_args -> empty .
+
+    RPAREN          reduce using rule 18 (function_call_args -> empty .)
+    COMMA           reduce using rule 18 (function_call_args -> empty .)
+
+
+state 67
+
+    (11) function_definition -> DEF ID LPAREN . function_args RPAREN LBRACE statements RBRACE
+    (12) function_args -> . function_args COMMA ID
+    (13) function_args -> . ID
+    (14) function_args -> . empty
+    (46) empty -> .
+
+    ID              shift and go to state 73
+    RPAREN          reduce using rule 46 (empty -> .)
+    COMMA           reduce using rule 46 (empty -> .)
+
+    function_args                  shift and go to state 78
+    empty                          shift and go to state 74
+
+state 68
+
+    (28) expression -> LPAREN expression RPAREN .
+
+    SEMICOLON       reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    MULT            reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    DIV             reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    MOD             reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    GT              reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    LT              reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    GE              reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    LE              reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    EQ              reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    NE              reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    AND             reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    OR              reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 28 (expression -> LPAREN expression RPAREN .)
+
+
+state 69
+
+    (19) if_statement -> IF LPAREN expression . RPAREN LBRACE statements RBRACE
+    (20) if_statement -> IF LPAREN expression . RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    RPAREN          shift and go to state 79
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    AND             shift and go to state 37
+    OR              shift and go to state 38
+
+
+state 70
+
+    (21) return_statement -> RETURN expression SEMICOLON .
+
+    ID              reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    DEF             reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    IF              reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    RETURN          reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    PRINT           reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    NUMBER          reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    TRUE            reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    FALSE           reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    LPAREN          reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    NOT             reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    MINUS           reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    LAMBDA          reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    $end            reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+    RBRACE          reduce using rule 21 (return_statement -> RETURN expression SEMICOLON .)
+
+
+state 71
+
+    (23) print_statement -> PRINT LPAREN expression . RPAREN SEMICOLON
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    RPAREN          shift and go to state 80
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    AND             shift and go to state 37
+    OR              shift and go to state 38
+
+
+state 72
+
+    (22) lambda_expression -> LAMBDA LPAREN function_args . RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+    (12) function_args -> function_args . COMMA ID
+
+    RPAREN          shift and go to state 81
+    COMMA           shift and go to state 82
+
+
+state 73
+
+    (13) function_args -> ID .
+
+    RPAREN          reduce using rule 13 (function_args -> ID .)
+    COMMA           reduce using rule 13 (function_args -> ID .)
+
+
+state 74
+
+    (14) function_args -> empty .
+
+    RPAREN          reduce using rule 14 (function_args -> empty .)
+    COMMA           reduce using rule 14 (function_args -> empty .)
+
+
+state 75
+
+    (10) assignment -> ID ASSIGN expression SEMICOLON .
+
+    ID              reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    DEF             reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    IF              reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    RETURN          reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    PRINT           reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    NUMBER          reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    TRUE            reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    FALSE           reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    LPAREN          reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    NOT             reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    MINUS           reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    LAMBDA          reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+
+
+state 76
+
+    (15) function_call -> ID LPAREN function_call_args RPAREN .
+
+    SEMICOLON       reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    PLUS            reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    MINUS           reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    MULT            reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    DIV             reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    MOD             reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    GT              reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    LT              reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    GE              reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    LE              reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    EQ              reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    NE              reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    AND             reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    OR              reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    RPAREN          reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+    COMMA           reduce using rule 15 (function_call -> ID LPAREN function_call_args RPAREN .)
+
+
+state 77
+
+    (16) function_call_args -> function_call_args COMMA . expression
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 83
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 78
+
+    (11) function_definition -> DEF ID LPAREN function_args . RPAREN LBRACE statements RBRACE
+    (12) function_args -> function_args . COMMA ID
+
+    RPAREN          shift and go to state 84
+    COMMA           shift and go to state 82
+
+
+state 79
+
+    (19) if_statement -> IF LPAREN expression RPAREN . LBRACE statements RBRACE
+    (20) if_statement -> IF LPAREN expression RPAREN . LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 85
+
+
+state 80
+
+    (23) print_statement -> PRINT LPAREN expression RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 86
+
+
+state 81
+
+    (22) lambda_expression -> LAMBDA LPAREN function_args RPAREN . COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    COLON           shift and go to state 87
+
+
+state 82
+
+    (12) function_args -> function_args COMMA . ID
+
+    ID              shift and go to state 88
+
+
+state 83
+
+    (16) function_call_args -> function_call_args COMMA expression .
+    (29) expression -> expression . PLUS expression
+    (30) expression -> expression . MINUS expression
+    (31) expression -> expression . MULT expression
+    (32) expression -> expression . DIV expression
+    (33) expression -> expression . MOD expression
+    (34) expression -> expression . GT expression
+    (35) expression -> expression . LT expression
+    (36) expression -> expression . GE expression
+    (37) expression -> expression . LE expression
+    (38) expression -> expression . EQ expression
+    (39) expression -> expression . NE expression
+    (40) expression -> expression . AND expression
+    (41) expression -> expression . OR expression
+
+    RPAREN          reduce using rule 16 (function_call_args -> function_call_args COMMA expression .)
+    COMMA           reduce using rule 16 (function_call_args -> function_call_args COMMA expression .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    MULT            shift and go to state 28
+    DIV             shift and go to state 29
+    MOD             shift and go to state 30
+    GT              shift and go to state 31
+    LT              shift and go to state 32
+    GE              shift and go to state 33
+    LE              shift and go to state 34
+    EQ              shift and go to state 35
+    NE              shift and go to state 36
+    AND             shift and go to state 37
+    OR              shift and go to state 38
+
+
+state 84
+
+    (11) function_definition -> DEF ID LPAREN function_args RPAREN . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 89
+
+
+state 85
+
+    (19) if_statement -> IF LPAREN expression RPAREN LBRACE . statements RBRACE
+    (20) if_statement -> IF LPAREN expression RPAREN LBRACE . statements RBRACE ELSE LBRACE statements RBRACE
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . return_statement
+    (8) statement -> . print_statement
+    (9) statement -> . expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) function_definition -> . DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE
+    (19) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (21) return_statement -> . RETURN expression SEMICOLON
+    (23) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    ID              shift and go to state 10
+    DEF             shift and go to state 11
+    IF              shift and go to state 13
+    RETURN          shift and go to state 14
+    PRINT           shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 9
+    statements                     shift and go to state 90
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    return_statement               shift and go to state 7
+    print_statement                shift and go to state 8
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 86
+
+    (23) print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .
+
+    ID              reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    DEF             reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    IF              reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    RETURN          reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    PRINT           reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    NUMBER          reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    TRUE            reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    FALSE           reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    LPAREN          reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    NOT             reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    MINUS           reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    LAMBDA          reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    $end            reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    RBRACE          reduce using rule 23 (print_statement -> PRINT LPAREN expression RPAREN SEMICOLON .)
+
+
+state 87
+
+    (22) lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON . LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    LBRACE          shift and go to state 91
+
+
+state 88
+
+    (12) function_args -> function_args COMMA ID .
+
+    RPAREN          reduce using rule 12 (function_args -> function_args COMMA ID .)
+    COMMA           reduce using rule 12 (function_args -> function_args COMMA ID .)
+
+
+state 89
+
+    (11) function_definition -> DEF ID LPAREN function_args RPAREN LBRACE . statements RBRACE
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . return_statement
+    (8) statement -> . print_statement
+    (9) statement -> . expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) function_definition -> . DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE
+    (19) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (21) return_statement -> . RETURN expression SEMICOLON
+    (23) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    ID              shift and go to state 10
+    DEF             shift and go to state 11
+    IF              shift and go to state 13
+    RETURN          shift and go to state 14
+    PRINT           shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    statements                     shift and go to state 92
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    return_statement               shift and go to state 7
+    print_statement                shift and go to state 8
+    expression                     shift and go to state 9
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 90
+
+    (19) if_statement -> IF LPAREN expression RPAREN LBRACE statements . RBRACE
+    (20) if_statement -> IF LPAREN expression RPAREN LBRACE statements . RBRACE ELSE LBRACE statements RBRACE
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . return_statement
+    (8) statement -> . print_statement
+    (9) statement -> . expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) function_definition -> . DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE
+    (19) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (21) return_statement -> . RETURN expression SEMICOLON
+    (23) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    RBRACE          shift and go to state 93
+    ID              shift and go to state 10
+    DEF             shift and go to state 11
+    IF              shift and go to state 13
+    RETURN          shift and go to state 14
+    PRINT           shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 9
+    statement                      shift and go to state 24
+    assignment                     shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    return_statement               shift and go to state 7
+    print_statement                shift and go to state 8
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 91
+
+    (22) lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE . statements RBRACE LPAREN function_call_args RPAREN
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . return_statement
+    (8) statement -> . print_statement
+    (9) statement -> . expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) function_definition -> . DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE
+    (19) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (21) return_statement -> . RETURN expression SEMICOLON
+    (23) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    ID              shift and go to state 10
+    DEF             shift and go to state 11
+    IF              shift and go to state 13
+    RETURN          shift and go to state 14
+    PRINT           shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    statements                     shift and go to state 94
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    return_statement               shift and go to state 7
+    print_statement                shift and go to state 8
+    expression                     shift and go to state 9
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 92
+
+    (11) function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements . RBRACE
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . return_statement
+    (8) statement -> . print_statement
+    (9) statement -> . expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) function_definition -> . DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE
+    (19) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (21) return_statement -> . RETURN expression SEMICOLON
+    (23) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    RBRACE          shift and go to state 95
+    ID              shift and go to state 10
+    DEF             shift and go to state 11
+    IF              shift and go to state 13
+    RETURN          shift and go to state 14
+    PRINT           shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    statement                      shift and go to state 24
+    assignment                     shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    return_statement               shift and go to state 7
+    print_statement                shift and go to state 8
+    expression                     shift and go to state 9
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 93
+
+    (19) if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .
+    (20) if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE . ELSE LBRACE statements RBRACE
+
+    ID              reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    DEF             reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    IF              reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    RETURN          reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    PRINT           reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    NUMBER          reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    TRUE            reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    FALSE           reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    LPAREN          reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    NOT             reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    MINUS           reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    LAMBDA          reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    $end            reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 19 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE .)
+    ELSE            shift and go to state 96
+
+
+state 94
+
+    (22) lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements . RBRACE LPAREN function_call_args RPAREN
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . return_statement
+    (8) statement -> . print_statement
+    (9) statement -> . expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) function_definition -> . DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE
+    (19) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (21) return_statement -> . RETURN expression SEMICOLON
+    (23) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    RBRACE          shift and go to state 97
+    ID              shift and go to state 10
+    DEF             shift and go to state 11
+    IF              shift and go to state 13
+    RETURN          shift and go to state 14
+    PRINT           shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    statement                      shift and go to state 24
+    assignment                     shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    return_statement               shift and go to state 7
+    print_statement                shift and go to state 8
+    expression                     shift and go to state 9
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 95
+
+    (11) function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .
+
+    ID              reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    DEF             reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    IF              reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    RETURN          reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    PRINT           reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    NUMBER          reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    TRUE            reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    FALSE           reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    LPAREN          reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    NOT             reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    MINUS           reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    LAMBDA          reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    $end            reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 11 (function_definition -> DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE .)
+
+
+state 96
+
+    (20) if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 98
+
+
+state 97
+
+    (22) lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE . LPAREN function_call_args RPAREN
+
+    LPAREN          shift and go to state 99
+
+
+state 98
+
+    (20) if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE . statements RBRACE
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . assignment
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . return_statement
+    (8) statement -> . print_statement
+    (9) statement -> . expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) function_definition -> . DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE
+    (19) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (21) return_statement -> . RETURN expression SEMICOLON
+    (23) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    ID              shift and go to state 10
+    DEF             shift and go to state 11
+    IF              shift and go to state 13
+    RETURN          shift and go to state 14
+    PRINT           shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 9
+    statements                     shift and go to state 100
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    return_statement               shift and go to state 7
+    print_statement                shift and go to state 8
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 99
+
+    (22) lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN . function_call_args RPAREN
+    (16) function_call_args -> . function_call_args COMMA expression
+    (17) function_call_args -> . expression
+    (18) function_call_args -> . empty
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (46) empty -> .
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 43
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    RPAREN          reduce using rule 46 (empty -> .)
+    COMMA           reduce using rule 46 (empty -> .)
+    LAMBDA          shift and go to state 23
+
+    function_call_args             shift and go to state 101
+    expression                     shift and go to state 65
+    empty                          shift and go to state 66
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 100
+
+    (20) if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements . RBRACE
+    (2) statements -> statements . statement
+    (4) statement -> . assignment
+    (5) statement -> . function_definition
+    (6) statement -> . if_statement
+    (7) statement -> . return_statement
+    (8) statement -> . print_statement
+    (9) statement -> . expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) function_definition -> . DEF ID LPAREN function_args RPAREN LBRACE statements RBRACE
+    (19) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE
+    (20) if_statement -> . IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE
+    (21) return_statement -> . RETURN expression SEMICOLON
+    (23) print_statement -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (24) expression -> . NUMBER
+    (25) expression -> . ID
+    (26) expression -> . TRUE
+    (27) expression -> . FALSE
+    (28) expression -> . LPAREN expression RPAREN
+    (29) expression -> . expression PLUS expression
+    (30) expression -> . expression MINUS expression
+    (31) expression -> . expression MULT expression
+    (32) expression -> . expression DIV expression
+    (33) expression -> . expression MOD expression
+    (34) expression -> . expression GT expression
+    (35) expression -> . expression LT expression
+    (36) expression -> . expression GE expression
+    (37) expression -> . expression LE expression
+    (38) expression -> . expression EQ expression
+    (39) expression -> . expression NE expression
+    (40) expression -> . expression AND expression
+    (41) expression -> . expression OR expression
+    (42) expression -> . NOT expression
+    (43) expression -> . MINUS expression
+    (44) expression -> . function_call
+    (45) expression -> . lambda_expression
+    (15) function_call -> . ID LPAREN function_call_args RPAREN
+    (22) lambda_expression -> . LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN
+
+    RBRACE          shift and go to state 102
+    ID              shift and go to state 10
+    DEF             shift and go to state 11
+    IF              shift and go to state 13
+    RETURN          shift and go to state 14
+    PRINT           shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    LPAREN          shift and go to state 12
+    NOT             shift and go to state 20
+    MINUS           shift and go to state 19
+    LAMBDA          shift and go to state 23
+
+    expression                     shift and go to state 9
+    statement                      shift and go to state 24
+    assignment                     shift and go to state 4
+    function_definition            shift and go to state 5
+    if_statement                   shift and go to state 6
+    return_statement               shift and go to state 7
+    print_statement                shift and go to state 8
+    function_call                  shift and go to state 21
+    lambda_expression              shift and go to state 22
+
+state 101
+
+    (22) lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args . RPAREN
+    (16) function_call_args -> function_call_args . COMMA expression
+
+    RPAREN          shift and go to state 103
+    COMMA           shift and go to state 77
+
+
+state 102
+
+    (20) if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .
+
+    ID              reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    DEF             reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    IF              reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    RETURN          reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    PRINT           reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    NUMBER          reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    TRUE            reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    FALSE           reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    LPAREN          reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    NOT             reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    MINUS           reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    LAMBDA          reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    $end            reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 20 (if_statement -> IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE .)
+
+
+state 103
+
+    (22) lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .
+
+    SEMICOLON       reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    PLUS            reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    MINUS           reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    MULT            reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    DIV             reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    MOD             reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    GT              reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    LT              reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    GE              reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    LE              reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    EQ              reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    NE              reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    AND             reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    OR              reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    RPAREN          reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+    COMMA           reduce using rule 22 (lambda_expression -> LAMBDA LPAREN function_args RPAREN COLON LBRACE statements RBRACE LPAREN function_call_args RPAREN .)
+

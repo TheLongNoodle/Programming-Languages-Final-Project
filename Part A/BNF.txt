@@ -1,0 +1,43 @@
+<program>       ::= <expression>
+
+<expression>    ::= <number>
+                 | <boolean>
+                 | <symbol>
+                 | <assignment>
+                 | <if-expression>
+                 | <lambda-expression>
+                 | <unary-operation>
+                 | <binary-operation>
+                 | <comparison-operation>
+                 | <function-call>
+                 | "(" <expression> ")"
+
+<number>        ::= <integer> | <float>
+<boolean>       ::= "True" | "False"
+<symbol>        ::= <identifier>
+
+<assignment>    ::= "(" <symbol> "=" <expression> ")"
+
+<if-expression> ::= "(" "if" <expression> <expression> <expression> ")"
+
+<lambda-expression> ::= "(" "lambda" "(" <parameter-list> ")" <expression> ")"
+<parameter-list> ::= <symbol> | <symbol> <parameter-list>
+
+<unary-operation> ::= "(" "!" <expression> ")"
+
+<binary-operation> ::= "(" <operator> <expression> <expression> ")"
+
+<comparison-operation> ::= "(" <comparison-operator> <expression> <expression> ")"
+
+<function-call> ::= "(" <expression> <argument-list> ")"
+<argument-list> ::= <expression> | <expression> <argument-list>
+
+<operator>          ::= "+" | "-" | "*" | "/" | "%"
+<comparison-operator> ::= "==" | "!=" | "<" | "<=" | ">" | ">="
+<logical-operator>   ::= "&&" | "||"
+
+<identifier>    ::= <letter> { <letter> | <digit> }
+<integer>       ::= <digit> { <digit> }
+<float>         ::= <digit> { <digit> } "." <digit> { <digit> }
+<digit>         ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<letter>        ::= "a" | "b" | "c" | ... | "z" | "A" | "B" | "C" | ... | "Z"
