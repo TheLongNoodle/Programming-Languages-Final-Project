@@ -4,24 +4,26 @@ from Lexer import lexer
 from Parser import parser
 import math
 
+##################### Return Signal
 class Return(Exception):
     def __init__(self, result):
         self.result = result
 
+##################### Environment object
 class Environment:
     def __init__(self, parent=None):
         self.variables = {}
         self.functions = {} if parent is None else parent.functions
         self.parent = parent
 
-    def set(self, var, value):
+    def set(self, var, value):                      # Save variable to environment
         if var in self.variables:
             self.variables[var] = value
         else:
             # If no parent, create the variable in the current environment
             self.variables[var] = value
 
-    def get(self, var):
+    def get(self, var):                             # Get variable from environment
         if var in self.variables:
             return self.variables[var]
         elif self.parent:
@@ -29,13 +31,13 @@ class Environment:
         else:
             raise RuntimeError(f"Variable '{var}' not found")
 
-    def define_function(self, name, args, body):
+    def define_function(self, name, args, body):    # Save function to environment
         if self.parent:
             self.parent.define_function(name, args, body)
         else:
             self.functions[name] = (args, body)
 
-    def call_function(self, name, arguments):
+    def call_function(self, name, arguments):       # Call function from environment using given arguments
         if name in self.functions:
             args, body = self.functions[name]
             if len(arguments) != len(args):
@@ -51,28 +53,24 @@ class Environment:
 
 global_env = Environment()
 
-def interpret(source_code, env = global_env):
+##################### Main interpreter
+def interpret(source_code, env = global_env): # The main interpreter
     lexer.input(source_code)
     parse_tree = parser.parse(lexer=lexer)
-    #print(parse_tree) # Debug
+    # print(parse_tree) # Debug
     eval_statements(parse_tree, env)
 
+##################### statement interpreter
 def eval_statements(statements, env, end=False):
     result = None
     for statement in statements:
         result = eval_statement(statement, env)
-        # try:
-        #     result = eval_statement(statement, env)
-        # except Return as e:
-        #     result = e.result
-        #     if isinstance(statement, (list, tuple)):
-        #         if statement[0] != 'function_call':
-        #             raise Return(result)
-        #     else:
-        #         return result
     return result
 
-def eval_statement(statement, env):
+def eval_statement(statement, env):         # Determine statement type
+    # Basically, it checks for the type in statement[0], if it finds a recognised name it separates
+    # the values after it accordingly and evaluate it as such, otherwise it's probably an expression so
+    # it initiates eval_expression
     try:
         if statement[0] == 'assign':
             _, var, expr = statement
@@ -120,16 +118,16 @@ def eval_statement(statement, env):
     except TypeError as e:
         return eval_expression(statement, env)
 
-def eval_expression(expr, env):
+##################### Expression interpreter
+def eval_expression(expr, env):                     # Checking if INT, BOOL or Variable
     if isinstance(expr, int):
         return expr
     elif isinstance(expr, bool):
         return expr
     elif isinstance(expr, str):
         return env.get(expr)
-    elif isinstance(expr, tuple):
-        op, *operands = expr
-        # Handle function calls
+    elif isinstance(expr, tuple):                   # Checking if function call or lambda expression
+        op, *operands = expr                        # separate tokens to evaluate operation
         if op == 'function_call':
             function_name, args = operands
             arguments = [eval_expression(arg, env) for arg in args]
@@ -143,20 +141,21 @@ def eval_expression(expr, env):
             try:
                 return env.call_function('lambda', arguments)
             except Return as e:
-                return e.result
-        elif op in ('+', '-', '*', '/', '%'):
+                return e.result                     # If not lambda or func call, determine operation
+        elif op in ('+', '-', '*', '/', '%'):       # Binary operation
             return eval_binary_op(op, *map(lambda x: eval_expression(x, env), operands))
         elif op in ('==', '!=', '<', '<=', '>', '>='):
             return eval_comparison(op, *map(lambda x: eval_expression(x, env), operands))
         elif op in ('&&', '||'):
             return eval_logical_op(op, *map(lambda x: eval_expression(x, env), operands))
-        elif op == 'not':
+        elif op == 'not':                           # Unary operation
             return not eval_expression(operands[0], env)
         elif op == 'uminus':
             return -eval_expression(operands[0], env)
     else:
         raise RuntimeError(f"Unknown expression type: {expr}")
 
+##################### Operations
 def eval_binary_op(op, left, right):
     if op == '+':
         return left + right
@@ -188,3 +187,6 @@ def eval_logical_op(op, left, right):
         return left and right
     elif op == '||':
         return left or right
+
+# NOTE!!! In this language, lambda expressions and unnamed functions are saved as a temporary copy function in the
+# environment under the proprietary name 'lambda'.

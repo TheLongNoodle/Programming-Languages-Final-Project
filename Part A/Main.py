@@ -3,7 +3,7 @@ import sys
 import traceback
 
 
-def repl(prompt='REPL> '):                            # The REPL
+def repl(prompt='REPL> '): # The REPL
     print("Welcome to the REPL! to exit, type 'exit'")
     while True:
         try:
@@ -17,7 +17,7 @@ def repl(prompt='REPL> '):                            # The REPL
             #traceback.print_exception(type(e), e, e.__traceback__)     #debug
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 1: # For file reading
         filename = sys.argv[1]
         if filename.endswith('.lambda'):
             try:

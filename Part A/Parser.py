@@ -1,5 +1,4 @@
 import ply.yacc as yacc
-from Lexer import tokens  # Import tokens from the lexer module
 
 # Define the precedence
 precedence = (
